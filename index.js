@@ -22,6 +22,7 @@ export default class ScrollPicker extends Component {
         dataSource:PropTypes.array.isRequired,
         selectedIndex:PropTypes.number,
         animateToSelectedIndex:PropTypes.bool,
+        scrollEnabled:PropTypes.bool,
         onValueChange:PropTypes.func,
         renderItem:PropTypes.func,
         highlightColor:PropTypes.string,
@@ -57,6 +58,7 @@ export default class ScrollPicker extends Component {
         let {header, footer} = this._renderPlaceHolder();
         let highlightWidth = (this.props.style ? this.props.style.width : 0) || deviceWidth;
         let highlightColor = this.props.highlightColor || '#333';
+        let scrollEnabled = this.props.scrollEnabled === null ? true : this.props.scrollEnabled;
         let wrapperStyle = {
             height:this.wrapperHeight,
             flex:1,
@@ -81,6 +83,7 @@ export default class ScrollPicker extends Component {
                 <ScrollView
                     ref={(sview) => { this.sview = sview; }}
                     bounces={false}
+                    scrollEnabled={scrollEnabled}
                     showsVerticalScrollIndicator={false} 
                     nestedScrollEnabled={true}
                     onMomentumScrollBegin={this._onMomentumScrollBegin.bind(this)}
